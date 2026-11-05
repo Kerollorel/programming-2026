@@ -1,0 +1,45 @@
+program HW
+    implicit none
+    integer :: t
+    
+    do
+        print *, "Enter target T (1-25, or 0 to exit):"
+        read *, t
+        if (t == 0) exit
+        if (t < 1 .or. t > 25) then 
+            print *, "Invalid target."
+        else
+            call find_pairs(t)
+        end if
+    end do
+
+contains
+
+    subroutine find_pairs(target)
+        implicit none
+        integer, intent(in) :: target
+        integer :: i, j, count 
+
+        count = 0
+        do i = 1, 5
+            do j = 1, 5
+                if (multiply(i, j) == target) then
+                    count = count + 1
+                    print *, "Pairs in output order: ", i, j
+                end if 
+            end do
+        end do
+        if (count == 0) then
+                    print *, "No pairs found."
+        else
+            print*, "Total count:", count
+        end if
+    end subroutine find_pairs
+
+    integer function multiply(a, b) result(value)
+        implicit none
+        integer, intent(in) :: a, b
+        value = a * b
+    end function multiply
+
+end program HW
