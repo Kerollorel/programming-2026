@@ -1,0 +1,12 @@
+program non_terminating_loop
+    implicit none
+    integer :: n
+
+n = -2
+do
+    !n = n + 1
+    if (n == 0) exit
+    print *, n
+    ! Nothing here changes n.
+end do
+end program non_terminating_loop
